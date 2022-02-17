@@ -1,13 +1,17 @@
 # Online-Appointment
 
-# cd server 
-# npm install 
-# npm start
+cd server 
+<br>
+npm install 
+ <br>
+npm start
 
 
 
 
-# cd client
-# npm install 
-# npm start
+cd client
+<br>
+npm install 
+ <br>
+ npm start
 
