@@ -1,25 +1,31 @@
-import logo from './logo.svg';
+import React from 'react';
+import { Container } from '@material-ui/core';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 
-function App() {
+import Home from './components/Home/Home';
+import Auth from './components/Auth/Auth';
+import ButtonAppBar from './components/Navbar/ButtonAppBar';
+import TimePiker from './components/DatePiker/TimePiker';
+
+const App = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App background">
+    <BrowserRouter >
+      <Container maxWidth="lg">
+        <ButtonAppBar /> <br></br>
+        <Routes>
+          <Route path='/' element={<Home />}/>
+          <Route path='/auth' element={<Auth/>}/>
+        </Routes><br></br>
+        <TimePiker></TimePiker>
+      </Container>
+
+    </BrowserRouter>
     </div>
   );
-}
+};
 
-export default App;
+
+export default App
