@@ -10,6 +10,8 @@ export default makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '10px 50px',
+    opacity: '0.5',
+    backgroundColor: 'transparent'
   },
   heading: {
     color: 'rgba(0,183,255, 1)',

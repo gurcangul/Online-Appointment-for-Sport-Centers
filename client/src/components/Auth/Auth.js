@@ -1,14 +1,15 @@
 import React, {useState} from 'react';
-import {Avatar, Button, Paper, Grid, Typography, Container, TextField} from '@material-ui/core';
+import {Avatar, Button, Paper, Grid, Typography, Container, TextField, IconButton} from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import useStyles from './sytles';
 import Input from './Input';
+import CancelIcon from '@mui/icons-material/Cancel';
+import {Link} from 'react-router-dom'
 
 const Auth = () => {
     const classes = useStyles();
     const [showPassword, setShowPassword] = useState(false);
     const [isSignup, setIsSignup] = useState(false);
-
 
     const handleChange = () =>{
     }
@@ -27,6 +28,13 @@ const Auth = () => {
   return (
     <Container component="main" maxWidth="xs">
         <Paper className={classes.paper} elevation={3}>
+            <Grid container justify="flex-end">
+                <Grid item>
+                    <IconButton component={Link} to="/app">
+                        <CancelIcon/>
+                    </IconButton>
+                </Grid> 
+            </Grid>     
             <Avatar className={classes.avatar}>
                 <LockOutlinedIcon />
             </Avatar>

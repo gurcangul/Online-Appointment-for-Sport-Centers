@@ -19,7 +19,7 @@ const App = () => {
           <Route path='/' element={<Home />}/>
           <Route path='/auth' element={<Auth/>}/>
         </Routes><br></br>
-        <TimePiker></TimePiker>
+        
       </Container>
 
     </BrowserRouter>
