@@ -13,16 +13,17 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import useStyles from './styles'
 import {Link} from 'react-router-dom'
+import logo from '../../images/logo.png';
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = ['About Us', 'Services', 'Portfolio', 'Contact Us'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-
 
 const ResponsiveAppBar = () => {
   const classes = useStyles();
   const user = null;
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [appbar, setAppBar] = React.useState(false);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -39,10 +40,19 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(null);
   };
 
+  const changeBackground = () => {
+    if(window.scrollY >= 80){
+      setAppBar(true);
+    }else{
+      setAppBar(false);
+    }
+  }
+  window.addEventListener('scroll', changeBackground);
+ 
   return (
     <AppBar  
-     sx={{backgroundColor:'#12151a',}}
-      className={classes.darkTheme}  position="static" 
+      sx={{backgroundColor: appbar ? 'black' : 'transparent'}}
+      className={classes.darkTheme}  position="fixed" 
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -52,9 +62,8 @@ const ResponsiveAppBar = () => {
             component="div"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }} 
           >
-            LOGO
+           <img className={classes.image} src={logo} alt="icon" height="60" />
           </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -97,7 +106,7 @@ const ResponsiveAppBar = () => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
           >
-            LOGO
+           <img className={classes.image} src={logo} alt="icon" height="60" />
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
@@ -119,7 +128,6 @@ const ResponsiveAppBar = () => {
           ): (
             <Button component={Link} to="/auth"  variant="contained" color="primary">Sign In</Button>
 
-          
           )}
         </Toolbar>
           <Box sx={{ flexGrow: 0 }}>
