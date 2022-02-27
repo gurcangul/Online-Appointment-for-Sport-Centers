@@ -20,6 +20,8 @@ const Home = () => {
     <Grow in>
         <Grid justify="space-between" alignItems='stretch' spacing={3}>
           <Grid item xs={12} sm={12}>
+          <Posts setCurrentId={setCurrentId} />
+
             <HomePage></HomePage>
           </Grid>
         </Grid>
