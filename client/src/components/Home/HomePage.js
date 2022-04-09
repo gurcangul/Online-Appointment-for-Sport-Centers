@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Container, Grow, Grid, Accordion, AccordionDetails, AccordionSummary, Typography, Card } from '@material-ui/core';
+import { Container, Grid, Accordion, AccordionDetails, AccordionSummary, Typography } from '@material-ui/core';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import useStyles from './styles';
-import Form from '../Form/Form'
+import Form from '../Form/Form';
+import DateDrawer from './DateDrawer';
+import PastReservations from '../Form/PastReservations'
+
 
 const HomePage = () => {
 
@@ -17,13 +20,15 @@ const HomePage = () => {
     const handleChange = (panel) => (event, isExpanded) => {
       setExpanded(isExpanded ? panel : false);
     };
-
+    
 
     return (
         <Container className={classes.container} maxWidth="lg">
+            <Grid container>
+                <Grid item xs={10} md={6}>
                     <Accordion className={classes.accordion1} expanded={expanded === 'addReservation'} onChange={handleChange('addReservation')}>
                         <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
+                            expandIcon={<ExpandMoreIcon style={{color:'white'}} />}
                             aria-controls="addReservationbh-content"
                             id="addReservationbh-header"
                         >
@@ -33,7 +38,7 @@ const HomePage = () => {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography>
-                                <Grid item xs={12} sm={6}>
+                                <Grid item sm={10} md={10}>
                                     <Form currentId={currentId} setCurrentId={setCurrentId} />
                                 </Grid>
                             </Typography>
@@ -41,7 +46,7 @@ const HomePage = () => {
                     </Accordion>
                     <Accordion  className={classes.accordion2} expanded={expanded === 'pastReservation'} onChange={handleChange('pastReservation')}>
                         <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
+                            expandIcon={<ExpandMoreIcon  style={{color:'white'}} />}
                             aria-controls="pastReservationbh-content"
                             id="pastReservationbh-header"
                         >
@@ -51,13 +56,15 @@ const HomePage = () => {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography>
-                                fkdjsglkdfjhljdfglhjlg
+                                <Grid item sm={10} md={10}>
+                                    <PastReservations  />
+                                </Grid>
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
                     <Accordion className={classes.accordion3} expanded={expanded === 'sportProgram'} onChange={handleChange('sportProgram')}>
                         <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
+                            expandIcon={<ExpandMoreIcon  style={{color:'white'}}/>}
                             aria-controls="sportProgrambh-content"
                             id="sportProgrambh-header"
                         >
@@ -73,7 +80,7 @@ const HomePage = () => {
                     </Accordion>
                     <Accordion className={classes.accordion4} expanded={expanded === 'memInfo'} onChange={handleChange('memInfo')}>
                         <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
+                            expandIcon={<ExpandMoreIcon  style={{color:'white'}}/>}
                             aria-controls="memInfobh-content"
                             id="memInfobh-header"
                         >
@@ -87,8 +94,15 @@ const HomePage = () => {
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
+                </Grid>
+               
+            </Grid>
         </Container>
     )
 }
 
 export default HomePage;
+
+/*  <Grid item xs={2} md={2} className={classes.drawer}>
+                    <DateDrawer></DateDrawer>
+                </Grid>*/

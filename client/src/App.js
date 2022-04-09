@@ -6,14 +6,13 @@ import './App.css';
 import Home from './components/Home/Home';
 import Auth from './components/Auth/Auth';
 import ButtonAppBar from './components/Navbar/ButtonAppBar';
-import TimePiker from './components/DatePiker/TimePiker';
 
 const App = () => {
 
   return (
     <div className="App background">
-    <BrowserRouter >
-      <Container maxWidth="lg">
+    <BrowserRouter>
+      <Container className='container' maxWidth="lg">
         <ButtonAppBar /> <br></br>
         <Routes>
           <Route path='/' element={<Home />}/>
@@ -21,7 +20,6 @@ const App = () => {
         </Routes><br></br>
         
       </Container>
-
     </BrowserRouter>
     </div>
   );

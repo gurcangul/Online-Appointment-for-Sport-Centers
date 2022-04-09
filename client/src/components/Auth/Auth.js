@@ -27,10 +27,10 @@ const Auth = () => {
 
   return (
     <Container component="main" maxWidth="xs">
-        <Paper className={classes.paper} elevation={3}>
+        <Paper className={classes.paper} elevation={3} >
             <Grid container justify="flex-end">
                 <Grid item>
-                    <IconButton component={Link} to="/app">
+                    <IconButton>
                         <CancelIcon/>
                     </IconButton>
                 </Grid> 
