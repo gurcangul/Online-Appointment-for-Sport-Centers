@@ -6,6 +6,7 @@ import { getPosts } from '../../actions/posts';
 import Posts from '../Posts/Posts'
 import Form from '../Form/Form'
 import HomePage from './HomePage';
+import DrawerMenu from '../DrawerMenu/DrawerMenu';
 
 
 const Home = () => {
@@ -23,6 +24,7 @@ const Home = () => {
           <Posts setCurrentId={setCurrentId} />
 
             <HomePage></HomePage>
+            <DrawerMenu/>
           </Grid>
         </Grid>
     </Grow>  

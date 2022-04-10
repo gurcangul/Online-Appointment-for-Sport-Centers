@@ -7,6 +7,7 @@ import useStyles from './styles';
 import Form from '../Form/Form';
 import DateDrawer from './DateDrawer';
 import PastReservations from '../Form/PastReservations'
+import DrawerMenu from '../DrawerMenu/DrawerMenu';
 
 
 const HomePage = () => {
@@ -23,7 +24,7 @@ const HomePage = () => {
     
 
     return (
-        <Container className={classes.container} maxWidth="lg">
+        <Container className={classes.container} maxWidth="lg">      
             <Grid container>
                 <Grid item xs={10} md={6}>
                     <Accordion className={classes.accordion1} expanded={expanded === 'addReservation'} onChange={handleChange('addReservation')}>

@@ -11,6 +11,8 @@ const Auth = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [isSignup, setIsSignup] = useState(false);
 
+    const [visible, setVisible] = useState(true);
+    if(!visible) return null;
     const handleChange = () =>{
     }
 
@@ -27,10 +29,10 @@ const Auth = () => {
 
   return (
     <Container component="main" maxWidth="xs">
-        <Paper className={classes.paper} elevation={3} >
+        <Paper className={classes.paper} elevation={3}>
             <Grid container justify="flex-end">
                 <Grid item>
-                    <IconButton>
+                    <IconButton onClick={() => setVisible(false)}>
                         <CancelIcon/>
                     </IconButton>
                 </Grid> 
