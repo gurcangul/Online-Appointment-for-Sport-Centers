@@ -13,15 +13,15 @@ const App = () => {
   return (
     <div className="App background">
     <BrowserRouter> 
-    <Container className='container' maxWidth="lg">
-        <ButtonAppBar /> <br></br>
+    <Container className='container' maxWidth="lg"> 
+    <br></br>
+    <ButtonAppBar className="button-app-bar"/> <br></br>
         <Routes>     
           <Route path='/' element={<Intro />}/>
           <Route path='/home' element={<Home /> 
 }/>
           <Route path='/auth' element={<Auth/>}/>
         </Routes><br></br>
-        
       </Container>
     </BrowserRouter>
     </div>

@@ -36,6 +36,12 @@
 .container {
   margin : 0;
 }
+.button-app-bar {
+  z-index: 1000;
+  width: 100%;
+  margin-left: 20px;
+}
+
 
 @keyframes App-logo-spin {
   from {

@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { height } from '@mui/system';
 
 export default makeStyles((theme) => ({
   root: {
@@ -10,7 +11,10 @@ export default makeStyles((theme) => ({
     padding: theme.spacing(2),
     marginBottom: '20px',
     backgroundColor: '#f9fbe7',
-    borderRadius: '30px'
+    borderRadius: '30px',
+    width: '50%',
+    display : 'flex',
+    height : '50vh'
     
   },
   form: {
