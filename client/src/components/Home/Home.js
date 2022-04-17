@@ -7,7 +7,7 @@ import Posts from '../Posts/Posts'
 import Form from '../Form/Form'
 import HomePage from './HomePage';
 import DrawerMenu from '../DrawerMenu/DrawerMenu';
-
+import ButtonAppBar from '../Navbar/ButtonAppBar';
 
 const Home = () => {
     const [currentId, setCurrentId] = useState(0);
@@ -21,10 +21,8 @@ const Home = () => {
     <Grow in>
         <Grid justify="space-between" alignItems='stretch' spacing={3}>
           <Grid item xs={12} sm={12}>
-          <Posts setCurrentId={setCurrentId} />
-
-            <HomePage></HomePage>
             <DrawerMenu/>
+            
           </Grid>
         </Grid>
     </Grow>  

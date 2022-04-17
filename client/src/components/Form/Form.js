@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, Button, Typography, Paper, Grid } from '@material-ui/core';
+import { TextField, Button, Typography, Paper, Grid, Divider } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import FileBase from 'react-file-base64';
 import useStyles from './styles';
@@ -69,7 +69,7 @@ const Form = ({ currentId, setCurrentId }) => {
     <Paper className={classes.paper}>
       <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
         <Typography variant="h6">{currentId ? `Editing "${post.title}"` : 'Creating a Reservation'}</Typography>
-            <Grid container>
+            <Grid container cols={12}>
               <Grid items md={6} sm={12} cols={12}>
                 <DatePicker
                     dateProps = {datePicker}
@@ -86,24 +86,29 @@ const Form = ({ currentId, setCurrentId }) => {
                   variant="outlined" 
                   label="Reservation Note" 
                   multiline rows={4} 
+                  style={{width: '96%'}}
                   value={postData.reservationNote} 
                   onChange={(e) => setPostData({ ...postData, reservationNote: e.target.value })} 
               />
               </Grid>
+              
               <Grid items cols={12} sm={12} md={6} justifyContent='flex-end'>
                 <Button 
                     className={classes.buttonSubmit} 
                     variant="contained" 
+                    style={{float: 'right', marginRight:2}}
                     size="medium" 
                     type="submit" 
                 >
                     Create
                 </Button>
               </Grid>
+              <Divider/>
               <Grid items cols={12} sm={12} md={6} justifyContent='flex-start'>
                 <Button 
                     className={classes.clearButton}
                     variant="contained" 
+                    style={{float: 'left', marginLeft:2}}
                     size="medium" 
                     onClick={clear} 
                 >
