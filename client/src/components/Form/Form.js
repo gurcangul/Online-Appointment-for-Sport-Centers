@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, Button, Typography, Paper, Grid, Divider } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import FileBase from 'react-file-base64';
 import useStyles from './styles';
 import { createPost, updatePost } from '../../actions/posts';
-import TimePicker from '../Pickers/TimePicker'
-import DatePicker from '../Pickers/DatePicker';
+import TimePicker from '@mui/lab/TimePicker';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DatePicker from '@mui/lab/DatePicker';
 
 const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({ reservationDate: '', reservationTime: '', reservationNote: '' });
@@ -23,7 +24,6 @@ const Form = ({ currentId, setCurrentId }) => {
     setMaxDate({maxDate});
   }
 
-
   useEffect(() => {
     if (post) setPostData(post);
   }, [post]);
@@ -35,7 +35,9 @@ const Form = ({ currentId, setCurrentId }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    postData.reservationDate = reservationDate;
+    postData.reservationTime = reservationTime;
+    console.log(postData)
     if (currentId === 0) {
       dispatch(createPost(postData));
       clear();
@@ -45,25 +47,8 @@ const Form = ({ currentId, setCurrentId }) => {
     }
   };
 
-  const [value, setValue] = React.useState(null);
-
-  const timePicker = {
-    minTime:new Date(0, 0, 0, 9),
-    maxTime:new Date(0, 0, 0, 21, 0),
-    label:"Reservation Time",
-    name:"reservation_name",
-    onChange:(e) => setPostData({ ...postData, reservationTime: e.target.value }),
-    value: postData.reservationTime
-  }
-
-  const datePicker = {
-    label: "Reservation Date",
-    minDate: new Date(),
-    maxDate: handleMaxDate,
-    name: "reservationDate" ,
-    onChange: (e) => setPostData({ ...postData, reservationDate: e.target.value }), 
-    value: postData.reservationDate,
-  }
+  const [reservationDate, setReservationDate] = React.useState(null);
+  const [reservationTime, setReservationTime] = React.useState(null);
 
   return (
     <Paper className={classes.paper}>
@@ -71,14 +56,45 @@ const Form = ({ currentId, setCurrentId }) => {
         <Typography variant="h6">{currentId ? `Editing "${post.title}"` : 'Creating a Reservation'}</Typography>
             <Grid container cols={12}>
               <Grid items md={6} sm={12} cols={12}>
-                <DatePicker
-                    dateProps = {datePicker}
-                />
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                        value={reservationDate}
+                        minDate={new Date()}
+                        label="Reservation Date"
+                        selected={postData.reservationDate}
+                        onChange={(newValue) => {
+                        setReservationDate(newValue);
+                        }}
+                        renderInput={(params) => 
+                        <TextField 
+                            variant='outlined'
+                            value={reservationDate}
+                            name="reservationDate"
+                            onChange= {(e) => setPostData({...postData, reservationDate: e.target.value}) }
+                            {...params} />}
+                    />
+                </LocalizationProvider>
               </Grid>
               <Grid items md={6} sm={12} cols={12}>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <TimePicker
-                  timeProps = {timePicker}
+                  label="Reservation Time" 
+                  value={reservationTime}
+                  onChange={(newValue) => {
+                    setReservationTime(newValue);
+                  }}
+                  minTime = {new Date(0, 0, 0, 9)}
+                  maxTime= {new Date(0, 0, 0, 21, 0)}
+                  renderInput={(params) => 
+                    <TextField 
+                      {...params} 
+                      variant="outlined"
+                      value={reservationTime}
+                      name="reservationTime"
+                      onChange= {(e) => setPostData({ ...postData, reservationTime: e.target.value })}
+                      />}
                 />
+              </LocalizationProvider>
               </Grid>
               <Grid items md={12} sm={12} cols={12}>
               <TextField                 

@@ -15,7 +15,7 @@ const App = () => {
     <BrowserRouter> 
     <Container className='container' maxWidth="lg"> 
     <br></br>
-    <ButtonAppBar className="button-app-bar"/> <br></br>
+    <ButtonAppBar/> <br></br>
         <Routes>     
           <Route path='/' element={<Intro />}/>
           <Route path='/home' element={<Home /> 

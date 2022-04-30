@@ -228,21 +228,13 @@ import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 import ViewListIcon from '@mui/icons-material/ViewList';
@@ -250,17 +242,15 @@ import InfoIcon from '@mui/icons-material/Info';
 import Form from '../Form/Form';
 import PastReservations from '../Form/PastReservations'
 import HomePage from '../Home/HomePage';
-import ButtonAppBar from '../Navbar/ButtonAppBar';
-import { flexbox } from '@mui/system';
-import { blue, grey, red } from '@material-ui/core/colors';
+import UserSchedule from '../Schedule/UserSchedule';
+import MemberShipInfo from '../Form/MemberShipInfo';
 
 const drawerWidth = 280;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
   marginTop: 66,
-
-  
+  backgroundColor : "#080808",  
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
@@ -270,7 +260,7 @@ const openedMixin = (theme) => ({
 
 const closedMixin = (theme) => ({
   marginTop: 66,
-
+  backgroundColor : "#080808",
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -318,11 +308,9 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     whiteSpace: 'nowrap',
     boxSizing: 'border-box',
     ...(open && {
-      ...openedMixin(theme),
       '& .MuiDrawer-paper': openedMixin(theme),
     }),
     ...(!open && {
-      ...closedMixin(theme),
       '& .MuiDrawer-paper': closedMixin(theme),
     }),
   }),
@@ -376,51 +364,35 @@ function addReservationContent(){
     {
       text : 'Add Reservation',
       icon : <AddCircleIcon />,
-      onClick : () => addReservationContent()
+      onClick : () => addReservationContent(),
     },
     {
       text : 'Past Reservations',
       icon : <ContentPasteIcon/>,
-      onClick : () => pastReservationContent()
+      onClick : () => pastReservationContent(),
     },
     {
       text : 'Sport Program',
       icon : <ViewListIcon/>,
-      onClick : () => sportProgramContent()
+      onClick : () => sportProgramContent(),
     },
     {
       text : 'Membership Information',
       icon : <InfoIcon />,
-      onClick : () => membershipInfoContent()
+      onClick : () => membershipInfoContent(),
     },
   ]
 
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
-      </AppBar>
-        <Drawer variant="permanent" open={open}>
-        <DrawerHeader></DrawerHeader>
-        <Toolbar>
-        <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={open ? handleDrawerClose : handleDrawerOpen}
-            edge="start"
-            sx={{
-              marginRight: 5,
-              ...(open),
-            }}
-          >
-            <MenuIcon sx={{marginLeft: 1}}/>
-          </IconButton>
-        </Toolbar>
-        <Divider/>
+        <Drawer variant="permanent" open={open} onMouseOver = {handleDrawerOpen}
+            onMouseLeave = {handleDrawerClose} >
         <List>
           {itemList.map((item, index) => (
             <ListItemButton
               onClick = {item.onClick}
+              style= {{color: "White"}}
               key={item.text}
               sx={{
                 minHeight: 48,
@@ -435,6 +407,7 @@ function addReservationContent(){
                   mr: open ? 3 : 'auto',
                   justifyContent: 'center',
                 }}
+                style= {{color : "White"}}
               >
                 {item.icon}
               </ListItemIcon>
@@ -443,36 +416,13 @@ function addReservationContent(){
           ))}
         </List>
         <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItemButton
-              key={text}
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? 'initial' : 'center',
-                px: 2.5,
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : 'auto',
-                  justifyContent: 'center',
-                }}
-              >
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-            </ListItemButton>
-          ))}
-        </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         <Typography>
               {openAddReservation ? <Form /> : (openPastReservation ? <PastReservations/> : 
 
-              (openSportProgram ? <HomePage/> : (openMmembershipInfo ? <HomePage/> : null))) }
+              (openSportProgram ? <UserSchedule/> : (openMmembershipInfo ? <MemberShipInfo/> : null))) }
         </Typography>
       </Box>
     </Box>

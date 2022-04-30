@@ -36,4 +36,22 @@ export default makeStyles((theme) => ({
     backgroundColor : '#1b5e20'
   },
 
+  membershipAccordion: {
+    backgroundColor:'#e0e0e0',
+    margin: '6px',
+    color: 'black',
+    borderRadius : "50px!important",
+  },
+  changePasswordAccordion: {
+    backgroundColor:'#8A7868',
+    margin: '10px',
+    color: 'white',
+    width: "90%"
+
+   },
+  container : {
+    marginTop:'70px!important',
+    paddingLeft: '0px!important',
+   },
+
 }));

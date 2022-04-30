@@ -16,7 +16,6 @@ const HomePage = () => {
     const classes = useStyles();
 
     const [currentId, setCurrentId] = useState(0);
-    const dispatch = useDispatch();
 
     const handleChange = (panel) => (event, isExpanded) => {
       setExpanded(isExpanded ? panel : false);
