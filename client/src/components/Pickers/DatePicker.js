@@ -12,8 +12,8 @@ const DatePickers = (props) => {
       <DatePicker
         value={value}
         minDate={props.dateProps.minDate}
-        maxDate={props.dateProps.maxDate}
         label={props.dateProps.label}
+        selected={props.dateProps.selected}
         onChange={(newValue) => {
           setValue(newValue);
         }}

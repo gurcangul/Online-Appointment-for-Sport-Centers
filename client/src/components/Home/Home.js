@@ -22,7 +22,6 @@ const Home = () => {
         <Grid justify="space-between" alignItems='stretch' spacing={3}>
           <Grid item xs={12} sm={12}>
             <DrawerMenu/>
-            
           </Grid>
         </Grid>
     </Grow>  
