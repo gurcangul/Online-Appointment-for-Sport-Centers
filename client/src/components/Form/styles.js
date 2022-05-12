@@ -5,12 +5,13 @@ export default makeStyles((theme) => ({
   root: {
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
+
     },
   },
   paper: {
     padding: theme.spacing(2),
     marginBottom: '20px',
-    backgroundColor: '#f9fbe7',
+    backgroundColor: 'white',
     borderRadius: '30px',
     width: '50%',
     display : 'flex',
@@ -40,7 +41,12 @@ export default makeStyles((theme) => ({
     backgroundColor:'#e0e0e0',
     margin: '6px',
     color: 'black',
-    borderRadius : "50px!important",
+    borderRadius : "10px!important",
+    display:"block!important",
+    '& .MuiAccordionDetails-root' : {
+      display:"block!important"
+
+    }
   },
   changePasswordAccordion: {
     backgroundColor:'#8A7868',
@@ -52,6 +58,8 @@ export default makeStyles((theme) => ({
   container : {
     marginTop:'70px!important',
     paddingLeft: '0px!important',
+    display:"block!important"
+
    },
 
 }));
