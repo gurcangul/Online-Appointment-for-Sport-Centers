@@ -12,7 +12,9 @@ export default makeStyles((theme) => ({
     padding: '10px 50px',
     opacity: '0.5',
     backgroundColor: 'transparent',
-    fixed: 'top'
+    fixed: 'top',
+    textDecoration: 'none',
+
   },
   heading: {
     color: 'rgba(0,183,255, 1)',
@@ -46,5 +48,7 @@ export default makeStyles((theme) => ({
   darkTheme: {
     backgroundColor:'#12151a',
   },
-
+  buttonText: {
+    textDecoration: 'none',
+  }
 }));

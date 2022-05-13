@@ -37,3 +37,13 @@
    top: 0;
      
 }
+.login-button{
+  width: 50px;
+  padding: 10px;
+  background-color:  #1976d2;
+  color:white;
+  box-shadow: 0 1px 0px 0px rgb(0 0 0 / 10%);
+  border-radius: 0.35rem;
+
+  text-decoration: none;
+}

@@ -14,19 +14,23 @@ import MenuItem from '@mui/material/MenuItem';
 import useStyles from './styles'
 import {Link} from 'react-router-dom'
 import logo from '../../images/logo2.jpg';
+import { useAppContext } from '../../context/appContext'
 
 const pages = ['About Us', 'Services', 'Portfolio', 'Contact Us'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const ResponsiveAppBar = () => {
   const classes = useStyles();
-  const user = null;
+  const {user} = useAppContext()
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [appbar, setAppBar] = React.useState(false);
+  const {  logoutUser } = useAppContext()
 
   const[show, setShow]=useState(false);
-
+if(user!=null){
+  setShow(true);
+}
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -41,7 +45,9 @@ const ResponsiveAppBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
+  const logout = (e) => {
+    logoutUser();
+}
   const changeBackground = () => {
     if(window.scrollY >= 80){
       setAppBar(true);
@@ -121,22 +127,26 @@ const ResponsiveAppBar = () => {
               </Button>
             ))}
           </Box>
+
+
           <Toolbar>
           {user ? (
             <div >
-                <Typography  variant="h6">{user.result.name}</Typography>
-                <Button variant="contained"  color="secondary">Log In</Button>
+                <Typography  variant="h8">{user/*.name*/}</Typography>
+                <Link className={classes.buttonText} to='/register'  ><Button variant="contained"  color="primary" onClick={logout}> Log Out</Button> </Link>
               </div>
           ): (
-            <Button component={Link} to="/auth"  variant="contained" color="primary">Sign In</Button>
+            <Link className={classes.buttonText} to='/register'><Button variant="contained" color="primary">Sign In</Button></Link>
 
           )}
         </Toolbar>
+
+
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
               {
-                show?<Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />:null
+                show?<Avatar  src="/static/images/avatar/2.jpg" />:null
            
                  }
               </IconButton>
