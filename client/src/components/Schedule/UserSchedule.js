@@ -63,8 +63,8 @@ const localizer = dateFnsLocalizer({
             <div>
                 <h3>SCHEDULE</h3>
                 <div>
-                <Grid container cols={12} style={{marginBottom: "5px"}}>
-                    <TextField  variant="outlined" placeholder='Add Title' style={{width: "20%", margin: "5px"}}
+                <Grid container cols={12} style={{marginBottom: "15px"}}>
+                    <TextField  variant="outlined" placeholder='Add Title' style={{width: "20%", marginBottom: "5px", marginRight:"5px", marginLeft:"10px"}}
                         value={newEvent.title} onChange={(e) => setNewEvent({...newEvent, title: e.target.value})}
                     />
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -80,6 +80,7 @@ const localizer = dateFnsLocalizer({
                             <TextField 
                                 variant='outlined'
                                 value={startDate}
+                                style={{marginRight: "5px"}}
                                 name="startDate"
                                 onChange= {(e) => setNewEvent({...newEvent, start: e.target.value}) }
                                 {...params} />}
@@ -103,7 +104,7 @@ const localizer = dateFnsLocalizer({
                                 {...params} />}
                         />
                     </LocalizationProvider>
-                    <Button onClick={handleAddEvent} style={{color:'White', backgroundColor : '#01579b', margin: "5px"}}> Add Event</Button>
+                    <Button onClick={handleAddEvent} style={{color:'White', backgroundColor : '#01579b', marginLeft:"25px", height:"55px"}}> Add Event</Button>
                   </Grid>  
                 </div>
                 <Calendar 
