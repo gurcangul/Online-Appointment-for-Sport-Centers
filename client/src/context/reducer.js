@@ -57,7 +57,7 @@ const reducer = (state, action) => {
       token: action.payload.token,
       user: action.payload.user,
       userLocation: action.payload.location,
-      bookingLocation: action.payload.location,
+      bookingTime: action.payload.location,
       showAlert: true,
       alertType: 'success',
       alertText: action.payload.alertText,
@@ -83,7 +83,7 @@ const reducer = (state, action) => {
       ...initialState,
       user: null,
       token: null,
-      bookingLocation: '',
+      bookingTime: '',
       userLocation: '',
     }
   }
@@ -97,7 +97,7 @@ const reducer = (state, action) => {
       token: action.payload.token,
       user: action.payload.user,
       userLocation: action.payload.location,
-      bookingLocation: action.payload.location,
+      bookingTime: action.payload.location,
       showAlert: true,
       alertType: 'success',
       alertText: 'User MyProfile Updated!',
@@ -125,7 +125,7 @@ const reducer = (state, action) => {
       editBookingId: '',
       position: '',
       planningDate: '',
-      bookingLocation: state.userLocation,
+      bookingTime: state.userLocation,
       bookingType: 'Cardio',
       status: 'pending',
     }
@@ -171,14 +171,14 @@ const reducer = (state, action) => {
   }
   if (action.type === SET_EDIT_BOOKING) {
     const booking = state.bookings.find((booking) => booking._id === action.payload.id)
-    const { _id, position, planningDate, bookingLocation, bookingType, status } = booking
+    const { _id, position, planningDate, bookingTime, bookingType, status } = booking
     return {
       ...state,
       isEditing: true,
       editBookingId: _id,
       position,
       planningDate,
-      bookingLocation,
+      bookingTime,
       bookingType,
       status,
     }

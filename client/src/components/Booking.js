@@ -9,7 +9,7 @@ const Booking = ({
   _id,
   position,
   planningDate,
-  bookingLocation,
+  bookingTime,
   bookingType,
   createdAt,
   status,
@@ -29,9 +29,11 @@ const Booking = ({
       </header>
       <div className='content'>
         <div className='content-center'>
-          <BookingInfo icon={<FaLocationArrow />} text={bookingLocation} />
-          <BookingInfo icon={<FaCalendarAlt />} text={date} />
+          <BookingInfo icon={<FaLocationArrow />} text={bookingTime} /> 
+          {/*<BookingInfo icon={<FaCalendarAlt />}  text={date} /> */}
           <BookingInfo icon={<FaBriefcase />} text={bookingType} />
+          <BookingInfo icon={<FaLocationArrow />} text={planningDate} />
+
           <div className={`status ${status}`}>{status}</div>
         </div>
         <footer>

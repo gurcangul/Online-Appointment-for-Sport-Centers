@@ -10,7 +10,7 @@ const AddBooking = () => {
     displayAlert,
     position,
     planningDate,
-    bookingLocation,
+    bookingTime,
     bookingType,
     bookingTypeOptions,
     status,
@@ -24,7 +24,7 @@ const AddBooking = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    if (!position || !planningDate || !bookingLocation) {
+    if (!position || !planningDate || !bookingTime) {
       displayAlert()
       return
     }
@@ -64,8 +64,8 @@ const AddBooking = () => {
           <FormRow
             type='text'
             labelText='planningDate'
-            name='bookingLocation'
-            value={bookingLocation}
+            name='bookingTime'
+            value={bookingTime}
             handleChange={handleBookingInput}
           />
           {/* booking status */}

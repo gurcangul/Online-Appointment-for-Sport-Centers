@@ -3,6 +3,7 @@ import BigSidebar from './BigSidebar'
 import ChartsContainer from './ChartsContainer'
 import FormRow from './FormRow'
 import FormRowSelect from './FormRowSelect'
+import FormRowSelect2 from './FormRowSelect2'
 import BookingsContainer from './BookingsContainer'
 import Loading from './Loading'
 import Logo from './Logo'
@@ -23,4 +24,5 @@ export {
   StatsContainer,
   ChartsContainer,
   Loading,
+  FormRowSelect2
 }

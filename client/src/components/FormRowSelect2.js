@@ -9,7 +9,7 @@ const FormRowSelect = ({ labelText, name, value, handleChange, list }) => {
         value={value}
         onChange={handleChange}
         className='form-select'
-        
+        disabled
       >
         {list.map((itemValue, index) => {
           return (

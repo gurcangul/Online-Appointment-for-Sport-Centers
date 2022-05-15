@@ -19,12 +19,12 @@ const BookingSchema = new mongoose.Schema(
     },
     bookingType: {
       type: String,
-      enum: ['Cardio ', 'General Weight', 'Sudation', 'Running+Swimming'],
+      enum: ['Cardio', 'General Weight', 'Full Workout', 'Running', 'Swimming', 'General'],
       default: 'Cardio',
     },
-    bookingLocation: {
+    bookingTime: {
       type: String,
-      default: 'my city',
+      default: '',
       required: true,
     },
     createdBy: {

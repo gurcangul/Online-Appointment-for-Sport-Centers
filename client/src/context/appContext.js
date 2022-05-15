@@ -48,8 +48,8 @@ const initialState = {
   editBookingId: '',
   position: '',
   planningDate: '',
-  bookingLocation: userLocation || '',
-  bookingTypeOptions: ['Cardio ', 'General Weight', 'Ssudation', 'Running+Swimming'],
+  bookingTime: userLocation || '',
+  bookingTypeOptions: ['Cardio ', 'General Weight', 'Full Workout', 'Running', 'Swimming', 'General'],
   bookingType: 'Cardio',
   statusOptions: ['interview', 'canceled', 'pending'],
   status: 'pending',
@@ -183,11 +183,11 @@ const AppProvider = ({ children }) => {
   const createBooking = async () => {
     dispatch({ type: CREATE_BOOKING_BEGIN })
     try {
-      const { position, planningDate, bookingLocation, bookingType, status } = state
+      const { position, planningDate, bookingTime, bookingType, status } = state
       await authFetch.post('/bookings', {
         position,
         planningDate,
-        bookingLocation,
+        bookingTime,
         bookingType,
         status,
       })
@@ -235,11 +235,11 @@ const AppProvider = ({ children }) => {
     dispatch({ type: EDIT_BOOKING_BEGIN })
 
     try {
-      const { position, planningDate, bookingLocation, bookingType, status } = state
+      const { position, planningDate, bookingTime, bookingType, status } = state
       await authFetch.patch(`/bookings/${state.editBookingId}`, {
         planningDate,
         position,
-        bookingLocation,
+        bookingTime,
         bookingType,
         status,
       })
