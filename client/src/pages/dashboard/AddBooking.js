@@ -1,6 +1,17 @@
 import { FormRow, FormRowSelect, Alert } from '../../components'
 import { useAppContext } from '../../context/appContext'
 import Wrapper from '../../assets/wrappers/DashboardFormPage'
+import DatePicker from "react-datepicker";
+import React, { useState } from "react";
+import { FaCalendarAlt } from 'react-icons/fa';
+import Datetime from 'react-datetime';
+import TimePicker from 'react-time-picker';
+import TimeKeeper from 'react-timekeeper';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+// import required css from library
+import "react-datepicker/dist/react-datepicker.css";
+import "react-datetime/css/react-datetime.css";
 
 const AddBooking = () => {
   const {
@@ -39,7 +50,9 @@ const AddBooking = () => {
     const value = e.target.value
     handleChange({ name, value })
   }
-
+  const [startDate, setStartDate] = React.useState(null);
+  const [value, onChange] = React.useState(null);
+  const [time, setTime] = React.useState(null)
   return (
     <Wrapper>
       <form className='form'>
@@ -54,12 +67,18 @@ const AddBooking = () => {
             handleChange={handleBookingInput}
           />
           {/* planningDate */}
-          <FormRow
-            type='text'
-            name='planningDate'
-            value={planningDate}
-            handleChange={handleBookingInput}
-          />
+          <div className='form-row'>
+            <label htmlFor={planningDate} className='form-label'>
+              {"Planning Date"}
+            </label>
+            <Datetime  
+                value={startDate}
+                selected={startDate} 
+                className='date-picker'
+                onChange={(newDate) => setStartDate(newDate)} 
+              
+            />
+         </div>
           {/* location */}
           <FormRow
             type='text'
@@ -68,6 +87,7 @@ const AddBooking = () => {
             value={bookingLocation}
             handleChange={handleBookingInput}
           />
+          
           {/* booking status */}
           <FormRowSelect
             name='status'

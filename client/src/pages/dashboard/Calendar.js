@@ -1,113 +1,138 @@
-import { FormRow, FormRowSelect, Alert } from '../../components'
-import { useAppContext } from '../../context/appContext'
-import Wrapper from '../../assets/wrappers/DashboardFormPage'
-import { DatePicker } from '../../components/components/Pickers/DatePicker'
+import {Calendar, dateFnsLocalizer} from 'react-big-calendar';
+import format from 'date-fns/format';
+import parse from 'date-fns/parse';
+import startOfWeek from 'date-fns/startOfWeek';
+import getDay from 'date-fns/getDay';
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import React, {useState} from 'react';
+import { Paper, Button, TextField, Grid } from '@material-ui/core';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DatePicker from '@mui/lab/DatePicker';
 
-const Calendar = () => {
-  const {
-    isLoading,
-    isEditing,
-    showAlert,
-    displayAlert,
-    position,
-    planningDate,
-    bookingLocation,
-    bookingType,
-    bookingTypeOptions,
-    status,
-    statusOptions,
-    handleChange,
-    clearValues,
-    createBooking,
-    editBooking,
-  } = useAppContext()
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-
-    if (!position || !planningDate || !bookingLocation) {
-      displayAlert()
-      return
-    }
-    if (isEditing) {
-      editBooking()
-      return
-    }
-    createBooking()
-  }
-  const handleBookingInput = (e) => {
-    const name = e.target.name
-    const value = e.target.value
-    handleChange({ name, value })
-  }
-
-  return (
-    <Wrapper>
-      <form className='form'>
-        <h3>{isEditing ? 'edit booking' : 'add booking'}</h3>
-        {showAlert && <Alert />}
-        <div className='form-center'>
-          {/* position */}
-          <FormRow
-            type='text'
-            name='position'
-            value={position}
-            handleChange={handleBookingInput}
-          />
-          {/* planningDate */}
-          <FormRow
-            type='text'
-            name='planning Date'
-            value={planningDate}
-            handleChange={handleBookingInput}
-          />
-          {/* location */}
-          <FormRow
-            type='text'
-            labelText='booking location'
-            name='bookingLocation'
-            value={bookingLocation}
-            handleChange={handleBookingInput}
-          />
-          {/* booking status */}
-          <FormRowSelect
-            name='status'
-            value={status}
-            handleChange={handleBookingInput}
-            list={statusOptions}
-          />
-          {/* booking type */}
-          <FormRowSelect
-            name='bookingType'
-            labelText='booking type'
-            value={bookingType}
-            handleChange={handleBookingInput}
-            list={bookingTypeOptions}
-          />
-          {/* btn container */}
-          <div className='btn-container'>
-            <button
-              type='submit'
-              className='btn btn-block submit-btn'
-              onClick={handleSubmit}
-              disabled={isLoading}
-            >
-              submit
-            </button>
-            <button
-              className='btn btn-block clear-btn'
-              onClick={(e) => {
-                e.preventDefault()
-                clearValues()
-              }}
-            >
-              clear
-            </button>
-          </div>
-        </div>
-      </form>
-    </Wrapper>
-  )
+const UserSchedule = () => {
+    
+const locales = {
+    "en-US" : require("date-fns/locale/en-US")
 }
 
-export default Calendar
+const localizer = dateFnsLocalizer({
+    format,
+    parse,
+    startOfWeek,
+    getDay,
+    locales
+})
+
+    const events = [
+        {
+            title : "Big Meeting",
+            allDay: true,
+            start : new Date(2022,3,1),
+            end: new Date(2022,3,5)
+        },
+        {
+            title : "Vacation",
+            start : new Date(2022,4,7),
+            end: new Date(2022,4,10)
+        },
+        {
+            title : "Conference",
+            start : new Date(2022,5,0),
+            end: new Date(2022,5,0)
+        },
+    ]
+
+    const [newEvent, setNewEvent] = useState({title: "", start:"", end:""})
+    const [allEvents, setAllEvents] = useState(events)
+    const [startDate, setStartDate] = React.useState(new Date());
+    const [endDate, setEndDate] = React.useState(new Date());
+
+
+    function handleAddEvent() {
+        newEvent.start=startDate;
+        newEvent.end= endDate;
+        setAllEvents([...allEvents, newEvent])
+        // all events veritabanına eklenecek ve veriler ordan gelecek.
+    }
+
+    return(
+        <Paper>
+            <div>
+                <h3 style={{textAlign:'center', fontFamily: "sans-serif"}}>SCHEDULE</h3>
+                <div>
+                <Grid container cols={12} style={{marginBottom: "15px"}}>
+                    <TextField  variant="outlined" placeholder='Add Title' style={{width: "20%", marginBottom: "5px", marginRight:"5px", marginLeft:"10px"}}
+                        value={newEvent.title} onChange={(e) => setNewEvent({...newEvent, title: e.target.value})}
+                    />
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <DatePicker
+                            value={startDate}
+                            minDate={new Date()}
+                            label="Start Date"
+                            selected={newEvent.end}
+                            onChange={(newValue) => {
+                            setStartDate(newValue);
+                            }}
+                            renderInput={(params) => 
+                            <TextField 
+                                variant='outlined'
+                                value={startDate}
+                                style={{marginRight: "5px"}}
+                                name="startDate"
+                                onChange= {(e) => setNewEvent({...newEvent, start: e.target.value}) }
+                                {...params} />}
+                        />
+                    </LocalizationProvider>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <DatePicker
+                            value={endDate}
+                            minDate={startDate}
+                            label="End Date"
+                            selected={newEvent.end}
+                            onChange={(newValue) => {
+                            setEndDate(newValue);
+                            }}
+                            renderInput={(params) => 
+                            <TextField 
+                                variant='outlined'
+                                value={endDate}
+                                name="endDate"
+                                onChange= {(e) => setNewEvent({...newEvent, end: e.target.value}) }
+                                {...params} />}
+                        />
+                    </LocalizationProvider>
+                    <Button onClick={handleAddEvent} style={{color:'White', backgroundColor : '#01579b', marginLeft:"25px", height:"55px"}}> Add Event</Button>
+                  </Grid>  
+                </div>
+                <Calendar 
+                    localizer={localizer} 
+                    events={allEvents} 
+                    startAccessor="start" 
+                    endAccessor="end" 
+                    style={{height: 500}} 
+
+                />
+            </div>
+        </Paper>
+    )
+}
+
+export default UserSchedule;
+
+/*
+<DatePicker placeholderText='Start Date' style={{marginRight: "5px"}}
+                                selected={newEvent.start} onChange={(start) => setNewEvent({...newEvent, start})}
+                    />
+                    <DatePicker placeholderText='End Date'
+                                selected={newEvent.end} onChange={(end) => setNewEvent({...newEvent, end})}
+                    />
+
+
+                    <Typography  style={{margin: "5px"}} > 
+                        <DatePicker dateProps = {startDate}/>
+                    </Typography>
+                   
+                    <Typography  style={{margin: "5px"}} ><DatePicker dateProps = {endDate}/></Typography>
+
+                    */
