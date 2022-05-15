@@ -13,6 +13,7 @@ npm start
 cd client
 <br>
 npm install 
- <br>
- npm start
+ <br> npm start
 
+<br>
+<br>
