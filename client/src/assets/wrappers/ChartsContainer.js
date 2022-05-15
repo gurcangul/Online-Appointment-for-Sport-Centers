@@ -8,7 +8,7 @@ const Wrapper = styled.section`
     border-color: transparent;
     text-transform: capitalize;
     color: var(--primary-500);
-    font-size: 1.25rem;
+    font-size: 1.85rem;
     cursor: pointer;
   }
   h4 {
