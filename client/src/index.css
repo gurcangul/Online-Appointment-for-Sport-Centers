@@ -327,3 +327,9 @@ ul {
 .chartsContainer-div{
   background-color: rgba(255, 255, 255, 0.896);
 }
+
+.booking-h5{
+  color: white;
+  text-shadow: 2px 2px black;
+
+}

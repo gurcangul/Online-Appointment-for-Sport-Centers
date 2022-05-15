@@ -126,7 +126,7 @@ const reducer = (state, action) => {
       position: '',
       planningDate: '',
       bookingLocation: state.userLocation,
-      bookingType: 'full-time',
+      bookingType: 'Cardio',
       status: 'pending',
     }
 

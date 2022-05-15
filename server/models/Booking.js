@@ -19,8 +19,8 @@ const BookingSchema = new mongoose.Schema(
     },
     bookingType: {
       type: String,
-      enum: ['full-time', 'part-time', 'remote', 'internship'],
-      default: 'full-time',
+      enum: ['Cardio ', 'General Weight', 'Sudation', 'Running+Swimming'],
+      default: 'Cardio',
     },
     bookingLocation: {
       type: String,

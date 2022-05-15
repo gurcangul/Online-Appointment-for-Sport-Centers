@@ -36,7 +36,7 @@ const BookingsContainer = () => {
 
   return (
     <Wrapper>
-      <h5>
+      <h5 className='booking-h5'>
         {totalBookings} booking{bookings.length > 1 && 's'} found
       </h5>
       <div className='bookings'>
