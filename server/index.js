@@ -4,13 +4,21 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import morgan from 'morgan'
 
+import { dirname } from 'path'
+import { fileURLToPath } from 'url'
+import path from 'path'
+
+import helmet from 'helmet'
+import xss from 'xss-clean'
+import mongoSanitize from 'express-mongo-sanitize'
 import connectDB from './db/connect.js'
-import postRoutes from './routes/posts.js'
 import dotenv from 'dotenv';
 
 import errorHandlerMiddleware from './middleware/errorHandler.js'
 import notFoundMiddleware from './middleware/notFound.js'
-import authRouter from './routes/authRoutes.js'   
+import authRouter from './routes/authRoutes.js'
+import bookingsRouter from './routes/bookingsRoutes.js'
+import authenticateUser from './middleware/auth.js'
 
 
 const app = express();
@@ -20,20 +28,25 @@ dotenv.config();
 if(process.env.NODE_ENV !== 'production'){
     app.use(morgan('dev'))
   }
-  
+
+  const __dirname = dirname(fileURLToPath(import.meta.url))
+
   app.use(express.json())
   app.use(cors())
   
-  app.get('/', (req, res) => {
-    res.json({msg:'Server is runnig!'})
-  })
+
+app.use(express.json())
+app.use(helmet())
+app.use(xss())
+app.use(mongoSanitize())
   
   app.get('/api/v1', (req, res) => {
     res.json({msg:'API'})
   })
   
   app.use('/api/v1/auth', authRouter)
-  
+  app.use('/api/v1/bookings', authenticateUser, bookingsRouter)
+
   app.use(notFoundMiddleware)
   app.use(errorHandlerMiddleware)
   
