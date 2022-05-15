@@ -29,7 +29,7 @@ const BookingsContainer = () => {
   if (bookings.length === 0) {
     return (
       <Wrapper>
-        <h2>No bookings to display...</h2>
+        <h2 className='booking-h5'>No bookings to display...</h2>
       </Wrapper>
     )
   }

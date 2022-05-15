@@ -14,7 +14,7 @@ const MyProgram = () => {
   }
   return (
     <>
-    <h1>My Program</h1>
+    <h1 className='booking-h5'>My Program</h1>
       <StatsContainer />
       {monthlyApplications.length > 0 && <ChartsContainer />}
     </>
