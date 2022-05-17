@@ -3,6 +3,8 @@ import { Logo, FormRow, Alert } from '../components'
 import Wrapper from '../assets/wrappers/RegisterPage'
 import { useAppContext } from '../context/appContext'
 import { useNavigate } from 'react-router-dom'
+import ButtonAppBar from '../components/components/Navbar/ButtonAppBar.js';
+
 const initialState = {
   name: '',
   email: '',
@@ -55,7 +57,8 @@ const Register = () => {
   }, [user, navigate])
 
   return (
-    <Wrapper className='full-page'>
+    <Wrapper className='full-page'>      <ButtonAppBar/> <br></br>
+
       <form className='form' onSubmit={onSubmit}>
         <Logo />
         <h3>{values.isMember ? 'Login' : 'Register'}</h3>

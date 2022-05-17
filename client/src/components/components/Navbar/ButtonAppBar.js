@@ -13,24 +13,18 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import useStyles from './styles'
 import {Link} from 'react-router-dom'
-import logo from '../../images/logo2.jpg';
-import { useAppContext } from '../../context/appContext'
+import logo from '../../../assets/images/logo2.jpg';
 
-const pages = ['About Us', 'Services', 'Portfolio', 'Contact Us'];
+const pages = ['About Us', 'Services', 'Contact Us'];
 const settings = ['MyProfile', 'Account', 'Dashboard', 'Logout'];
 
 const ResponsiveAppBar = () => {
   const classes = useStyles();
-  const {user} = useAppContext()
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [appbar, setAppBar] = React.useState(false);
-  const {  logoutUser } = useAppContext()
 
   const[show, setShow]=useState(false);
-if(user!=null){
-  setShow(true);
-}
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -45,9 +39,7 @@ if(user!=null){
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  const logout = (e) => {
-    logoutUser();
-}
+
   const changeBackground = () => {
     if(window.scrollY >= 80){
       setAppBar(true);
@@ -130,15 +122,14 @@ if(user!=null){
 
 
           <Toolbar>
-          {user ? (
+       
             <div >
-                <Typography  variant="h8">{user/*.name*/}</Typography>
-                <Link className={classes.buttonText} to='/register'  ><Button variant="contained"  color="primary" onClick={logout}> Log Out</Button> </Link>
+                <Typography  variant="h8"></Typography>
               </div>
-          ): (
+         
             <Link className={classes.buttonText} to='/register'><Button variant="contained" color="primary">Sign In</Button></Link>
 
-          )}
+         
         </Toolbar>
 
 
