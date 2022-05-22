@@ -11,7 +11,7 @@ import path from 'path'
 import helmet from 'helmet'
 import xss from 'xss-clean'
 import mongoSanitize from 'express-mongo-sanitize'
-import connectDB from './db/connect.js'
+import connectDB from './server/src/db/connect.js'
 import dotenv from 'dotenv';
 
 import errorHandlerMiddleware from './server/src/middleware/errorHandler.js'
