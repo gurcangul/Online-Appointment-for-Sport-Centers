@@ -14,11 +14,11 @@ import mongoSanitize from 'express-mongo-sanitize'
 import connectDB from './db/connect.js'
 import dotenv from 'dotenv';
 
-import errorHandlerMiddleware from './middleware/errorHandler.js'
-import notFoundMiddleware from './middleware/notFound.js'
-import authRouter from './routes/authRoutes.js'
-import bookingsRouter from './routes/bookingsRoutes.js'
-import authenticateUser from './middleware/auth.js'
+import errorHandlerMiddleware from './server/src/middleware/errorHandler.js'
+import notFoundMiddleware from '../server/src/middleware/notFound.js'
+import authRouter from './server/src/routes/authRoutes.js'
+import bookingsRouter from './server/src/routes/bookingsRoutes.js'
+import authenticateUser from './server/src/middleware/auth.js'
 
 
 const app = express();
